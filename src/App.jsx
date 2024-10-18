@@ -22,17 +22,23 @@ function App() {
       
     }
     const titulo = "App de Comentarios";
-    const Autor = "David Giron y Jose"
+    const Autor = "David Giron"
     const ficha = "2902093"
-    const centro = "CGMLTI"
     const loading = false;
     if (loading === true) return (<h1> Cargando comentarios.. </h1>)        
     
+     const addComentario = (newComentario) =>{
+      //utilice el operador spread
+      //para añadir el newComentario
+      //a la lista de comentarios(state: comments)
+        setComments([...comments, newComentario])
+     }
+      
   return (
     <div className='container'>
 
-        <Header titulo={titulo} autor={Autor} centro={centro} ficha={ficha}/>
-        <ComentarioForm/>
+        <Header titulo={titulo} autor={Autor} ficha={ficha}/>
+        <ComentarioForm handleAdd={ addComentario }/>
         <ComentarioStats comentarios={comments}/>
         <ComentarioLista comments={comments} handleDelete={borrarItem} />
     </div>

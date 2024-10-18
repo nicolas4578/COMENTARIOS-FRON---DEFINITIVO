@@ -27,7 +27,6 @@ const Header = ({titulo, autor, centro, ficha}) => {
         <div className='container'>
             <p style={titleStyles}>{titulo}</p>
             <p style={autorStyles}>Autor: {autor} </p>
-            <p style={centroStyles}>Centro de formacion: {centro}</p>
             <p style={fichaStyles}>Ficha: {ficha}</p>
         </div>
     </header>
