@@ -1,11 +1,16 @@
-import {React, useState} from 'react'
+import {React, useState, useContext} from 'react'
 import Card from './Card'
 import ComentarioCalificacion from './ComentarioCalificacion'
+import ComentariosContexto from '../contexto/ComentariosContexto'
 
 const ComentarioForm = ({handleAdd}) => {
 
       const[text, setText] = useState('')
       const[calificacion, setCalificacion] = useState(0)
+
+      const { addItem } = useContext(ComentariosContexto)
+
+
 
       const handleTextChange = (e) => {
             setText( e.target.value )
@@ -18,7 +23,7 @@ const ComentarioForm = ({handleAdd}) => {
                   comentario: text,
                   calificacion: calificacion
             }
-            handleAdd(newComentario)
+      addItem(newComentario)
       }
 
   return (
