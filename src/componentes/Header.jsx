@@ -1,6 +1,9 @@
-import React from 'react'
+import { React , useState} from 'react'
 
-const Header = ({titulo, autor, centro, ficha}) => {
+function Header ({titulo, autor, centro, ficha}) {
+
+    const [ title , setTitle ] = useState(titulo)
+    const [ aut , setAut] = useState(autor)
 
     const headerStyles = {
         backgroundColor: 'rgba(0,0,0,0.4)',
@@ -25,8 +28,8 @@ const Header = ({titulo, autor, centro, ficha}) => {
   return (
     <header style={headerStyles}>
         <div className='container'>
-            <p style={titleStyles}>{titulo}</p>
-            <p style={autorStyles}>Autor: {autor} </p>
+            <p style={titleStyles}>{ title }</p>
+            <p style={autorStyles}>Autor: { aut } </p>
             <p style={fichaStyles}>Ficha: {ficha}</p>
         </div>
     </header>

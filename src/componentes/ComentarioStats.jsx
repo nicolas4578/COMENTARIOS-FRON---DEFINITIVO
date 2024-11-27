@@ -1,10 +1,17 @@
-import React from 'react'
+import {React , useContext, useState} from 'react'
+import ComentariosContexto from '../contexto/ComentariosContexto';
+
+const ComentarioStats = () => {
+
+      const {comments} = useContext(ComentariosContexto)
+      const comentarios = comments
 
 
-const ComentarioStats = ({ comentarios }) => {
-      // Calcular el número total de comentarios
+      if (!comentarios) return <div>Loading...</div>;
+
       const totalComentarios = comentarios.length;
     
+      
       // Calcular la calificación promedio
       const calificacionPromedio = totalComentarios > 0
         ? comentarios.reduce((acumulador, comentario) => 
@@ -13,8 +20,8 @@ const ComentarioStats = ({ comentarios }) => {
     
       return (
         <div className='feedback-stats'>
-          <h4>Comentarios: {totalComentarios}</h4> 
-          <h4>Calificación Promedio: {calificacionPromedio.toFixed(1)}</h4>
+          <h4>Comentarios: { totalComentarios }</h4> 
+          <h4>Calificación Promedio: { calificacionPromedio}</h4>
         </div>
       );
     };

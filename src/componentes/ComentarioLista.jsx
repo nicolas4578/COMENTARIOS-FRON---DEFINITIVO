@@ -1,7 +1,15 @@
-import React from 'react'
+import {React , useContext } from 'react'
+import ComentariosContexto from '../contexto/ComentariosContexto'
 import ComentarioItem from './ComentarioItem'
+import { AnimatePresence, motion } from 'framer-motion'
 
-function ComentarioLista ({ comments, handleDelete }) {
+
+function ComentarioLista () {
+
+      const {comments} = 
+            useContext(ComentariosContexto) 
+     
+      
 
       if (comments.length === 0 || !comments ) {
             return <p>No hay comentarios</p>
@@ -9,19 +17,27 @@ function ComentarioLista ({ comments, handleDelete }) {
             
       return (
             <div className='comments'>
-                  <ul>
-                  { 
-                        comments.map( comentario => 
-                              <ComentarioItem 
-                                    key={comentario.id}
-                                    comentario={comentario.comentario}
-                                    calificacion={comentario.calificacion}
-                                    id = {comentario.id}
-                                    handleDelete={handleDelete}
-                              />
-                        )
-                  }
-                  </ul>
+                  <AnimatePresence>
+                        <ul>
+                        { 
+                              comments.map( comentario => 
+                                    <motion.div
+                                          key={comentario.id}
+                                          initial={{opacity: 0}}
+                                          animate={{opacity: 1}}
+                                          exit={{ opacity:0 }}
+                                    >
+                                          <ComentarioItem 
+                                                      key={comentario.id}
+                                                      comentario={comentario}
+                                                     
+                                          />       
+                                    </motion.div>
+                                   
+                              )
+                        }
+                        </ul>
+                  </AnimatePresence>
             </div>
       )
       }
